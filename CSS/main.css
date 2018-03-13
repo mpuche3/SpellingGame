@@ -1,59 +1,48 @@
 
-
-canvas {
-	display: block;
-}
-
-html, body {
-	width:  100%;
-	height: 200%;
-	margin: 0px;
-	font-family: 'Roboto';
-}
-	
 .word {
 	font-family: 'Consolas';
 	width:  100%;
 	height: 150px;
 	text-align: center;
-	font-size: xx-large;
 	padding-top: 40px;
-	font-size: 100px
+	font-size: 100px;
+    margin-top: 0px;
 }
 
 .letters {
 	width:  100%;
-	height: 65px;
 	background-color: white;
 	text-align: center;
-	padding: 46px 0;
+    display: inline-block;
 }
 
 .letter {
 	font-family: 'Consolas';
-    background-color: #4CAF50;
+    background-color: rgb(100, 100, 100);
     border: none;
     color: white;
-    padding: 15px 32px;
+    padding: 10px 20px;
     text-align: center;
     text-decoration: none;
-    display: inline-block;
-    font-size: 100px;
+    width: 80px;
+    height: 80px;
+    font-size: 50px;
     margin: 4px 2px;
 	cursor: pointer;
 }
 
 .bonus {
 	font-family: 'Consolas';
-    background-color: #4CAF50;
-    border: none;
-    color: white;
-    padding: 15px 32px;
+    border: 8px;
+    color: black;
+    padding: 10px 10px;
     text-align: center;
     text-decoration: none;
-    display: inline-block;
-    font-size: 100px;
-    margin: 50px 11px;
+    display: inline-block;    
+    width: 80px;
+    height: 80px;
+    font-size: 30px;
+    margin: 20px 2px;
 	cursor: pointer;
     border-radius: 50%;
 }
@@ -61,16 +50,6 @@ html, body {
 .image {
     margin-top: 100px;
 	max-width: 100%
-}
-
-.bonus {
-
-		height: 100px;
-		width: 100px;
-		border-radius: 50%;
-		border:0;
-		padding:0;
-		font-size: 60px;
 }
 
 .definition {
@@ -98,12 +77,4 @@ html, body {
 	background-color: coral;
 	text-align: center;
 	font-size: xx-large;
-}
-
-#parent {
-    line-height: 200px;
-}
-
-#parent img {
-    vertical-align: middle;
 }
