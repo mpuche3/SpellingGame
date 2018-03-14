@@ -2,6 +2,17 @@ textarea, input[type="text"], input[type="button"], input[type="submit"] {-webki
 
 body{	text-align: center;}
 
+
+.points {
+    display:block;
+	font-family: 'Consolas';
+	height: 10px;
+	text-align: center;
+	padding-top: 20px;
+	font-size: 20px;
+    margin-top: 0px;
+}
+
 .word {
     display:block;
 	font-family: 'Consolas';
