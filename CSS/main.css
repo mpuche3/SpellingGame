@@ -1,7 +1,10 @@
 
+body{	text-align: center;}
+
 .word {
+    display:block;
 	font-family: 'Consolas';
-	width:  100%;
+	width:  700;
 	height: 150px;
 	text-align: center;
 	padding-top: 40px;
@@ -12,27 +15,22 @@
 .letters {
 	width:  100%;
 	background-color: white;
-	text-align: center;
     display: inline-block;
-
-
 }
 
 .letter {
 	font-family: 'Consolas';
-    background-color: rgb(100, 100, 100);
+    background-color: rgb(200, 200, 200);
     border: none;
     color: white;
     padding: 10px 20px;
     text-align: center;
     text-decoration: none;
-    width: 40px;
-    height: 40px;
-    font-size: 30px;
+    width: 100px;
+    height: 100px;
+    font-size: 50px;
     margin: 4px 2px;
 	cursor: pointer;
--webkit-appearance: none;
-border-radius: 0;
 }
 
 .bonus {
@@ -43,9 +41,9 @@ border-radius: 0;
     text-align: center;
     text-decoration: none;
     display: inline-block;    
-    width: 40px;
-    height: 40px;
-    font-size: 20px;
+    width: 100px;
+    height: 100px;
+    font-size: 30px;
     margin: 20px 2px;
 	cursor: pointer;
     border-radius: 50%;
