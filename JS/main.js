@@ -1,8 +1,7 @@
-
 // Get DOM elements
 DOM = {};
 DOM.bttns = [];
-for (let i=1; i<16; i++) {
+for (let i=1; i<21; i++) {
     DOM.bttns[i] = document.getElementById("bttn_" + i);
 }
 DOM.img = document.getElementById("img");
@@ -11,21 +10,56 @@ DOM.game = document.getElementById("game");
 DOM.letters = document.getElementById("letters")
 
 // Assign event listeners
-for (let i=1; i<15; i++) {
+for (let i=1; i<16; i++) {
     DOM.bttns[i].addEventListener ("click", addLetter);
 }
 
-DOM.bttns[15].style.backgroundColor = "rgb(150, 50, 50)"
+DOM.bttns[16].style.backgroundColor = "rgb(150, 150, 150)"
+DOM.bttns[17].style.backgroundColor = "rgb(150, 150, 150)"
+DOM.bttns[18].style.backgroundColor = "rgb(150, 150, 150)"
+DOM.bttns[19].style.backgroundColor = "rgb(150, 150, 150)"
+DOM.bttns[20].style.backgroundColor = "rgb(150, 150, 150)"
+
 
 // Assign event listeners to reset button
-DOM.bttns[15].addEventListener ("click", () => {
+
+DOM.bttns[16].addEventListener ("click", () => {
+
+});
+
+DOM.bttns[17].addEventListener ("click", () => {
+    let n = current_word.soFar.length;
+    let letter = current_word.id[n];
+    current_word.soFar += letter;
+    for (let i=1; i<16; i++) {
+        if (DOM.bttns[i].value === letter) {
+            if (DOM.bttns[i].style.backgroundColor !== "rgb(50, 50, 50)") {
+                DOM.bttns[i].style.backgroundColor = "rgb(50, 50, 50)";
+                DOM.word.innerHTML = current_word.soFar;
+                break;
+            }
+        }
+    }
+    if (DOM.word.innerHTML.trim() === current_word.id) {
+        DOM.word.style.background = "green";
+        DOM.letters.style.display = "none";
+        DOM.img.style.visibility = "visible"
+        DOM.img.addEventListener ("click", update);
+    }
+});
+
+DOM.bttns[19].addEventListener("click", () => {
+    var msg = new SpeechSynthesisUtterance(current_word.id);
+    window.speechSynthesis.speak(msg);  
+})
+
+DOM.bttns[20].addEventListener ("click", () => {
     DOM.word.innerHTML = current_word.soFar;
     for (let i=1; i<16; i++) {
         DOM.bttns[i].style.visibility = "visible";
     }
-    var msg = new SpeechSynthesisUtterance(current_word.id);
-    window.speechSynthesis.speak(msg);  
 });
+
 
 // Get JSON words
 current_word = {id:"id"};
@@ -60,6 +94,7 @@ function update () {
     DOM.letters.style.display = "initial";
     for (let i=1; i<16; i++) {
         DOM.bttns[i].style.visibility = "visible";
+        DOM.bttns[i].style.backgroundColor = "rgb(200, 200, 200)";
     }
   
 }
