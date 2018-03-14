@@ -1,4 +1,19 @@
 
+// SCORE
+score = {
+    num: 100,
+    add: function (num) {
+        if (num === undefined) {num = 1}
+        this.num += num;
+        DOM.points.innerHTML = "score: " + score.num 
+    },
+    remove: function (num) {
+        if (num === undefined) {num = 1}
+        this.num -= num;
+        DOM.points.innerHTML = "score: " + score.num 
+    }
+};
+
 // Get DOM elements
 DOM = {};
 DOM.bttns = [];
@@ -8,14 +23,13 @@ for (let i=1; i<21; i++) {
 DOM.img = document.getElementById("img");
 DOM.word = document.getElementById("word");
 DOM.game = document.getElementById("game");
-DOM.letters = document.getElementById("letters")
+DOM.letters = document.getElementById("letters");
+DOM.points = document.getElementById("points");
 
 // Assign event listeners
 for (let i=1; i<16; i++) {
     DOM.bttns[i].addEventListener ("click", addLetter);
 }
-
-
 DOM.bttns[16].style.backgroundColor = "rgb(150, 150, 150)"
 DOM.bttns[17].style.backgroundColor = "rgb(150, 150, 150)"
 DOM.bttns[18].style.backgroundColor = "rgb(150, 150, 150)"
@@ -23,7 +37,9 @@ DOM.bttns[19].style.backgroundColor = "rgb(150, 150, 150)"
 DOM.bttns[20].style.backgroundColor = "rgb(150, 150, 150)"
 
 // LETTER
+
 DOM.bttns[16].addEventListener ("click", () => {
+score.remove(1);
     let n = current_word.soFar.length;
     let letter = current_word.id[n];
     current_word.soFar += letter;
@@ -37,7 +53,6 @@ DOM.bttns[16].addEventListener ("click", () => {
         }
     }
     if (DOM.word.innerHTML.trim() === current_word.id) {
-        DOM.word.style.background = "green";
         DOM.letters.style.display = "none";
         DOM.img.style.visibility = "visible"
         DOM.img.addEventListener ("click", update);
@@ -46,29 +61,33 @@ DOM.bttns[16].addEventListener ("click", () => {
 
 // HEARING
 DOM.bttns[17].addEventListener("click", () => {
+score.remove(2);
     var msg = new SpeechSynthesisUtterance(current_word.id);
     window.speechSynthesis.speak(msg);  
 })
 
 // FLASH
 DOM.bttns[18].addEventListener ("click", () => {
+score.remove(5);
     let tmp = DOM.word.innerHTML;
     DOM.word.innerHTML = current_word.id;
     setTimeout(()=>{
         DOM.word.innerHTML = tmp;
-    }, 1000)
+    }, 200)
 });
 
 // PICTURE
 DOM.bttns[19].addEventListener ("click", () => {
+score.remove(5);
     DOM.img.style.visibility = "visible";
     setTimeout(()=>{
         DOM.img.style.visibility = "hidden";
-    }, 1000)
+    }, 400)
 });
 
 // REFRESH
 DOM.bttns[20].addEventListener ("click", () => {
+    score.remove(1);
     DOM.word.innerHTML = current_word.soFar;
     for (let i=1; i<16; i++) {
         DOM.bttns[i].style.visibility = "visible";
@@ -118,10 +137,12 @@ function addLetter (){
     DOM.word.innerHTML += this.value;
     this.style.visibility = "hidden";
     if (DOM.word.innerHTML.trim() === current_word.id) {
-        DOM.word.style.background = "green";
+        //DOM.word.style.color = "green";
+        //DOM.points.style.backgroundColor = "green";
         DOM.letters.style.display = "none";
         DOM.img.style.visibility = "visible"
         DOM.img.addEventListener ("click", update);
+        score.add(5);
     }
 }
 
@@ -139,5 +160,8 @@ function shuffle(word, len) {
     }
     return arr.join("");
 }
+
+
+
 
 update ();
