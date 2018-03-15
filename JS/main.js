@@ -25,6 +25,10 @@ DOM.word = document.getElementById("word");
 DOM.game = document.getElementById("game");
 DOM.letters = document.getElementById("letters");
 DOM.points = document.getElementById("points");
+DOM.description = document.getElementById("description");
+
+// Move to css file
+DOM.img.style.display = "none";
 
 // Assign event listeners
 for (let i=1; i<16; i++) {
@@ -36,8 +40,7 @@ DOM.bttns[18].style.backgroundColor = "rgb(150, 150, 150)"
 DOM.bttns[19].style.backgroundColor = "rgb(150, 150, 150)"
 DOM.bttns[20].style.backgroundColor = "rgb(150, 150, 150)"
 
-// LETTER
-
+// add LETTER
 DOM.bttns[16].addEventListener ("click", () => {
 score.remove(1);
     let n = current_word.soFar.length;
@@ -53,9 +56,14 @@ score.remove(1);
         }
     }
     if (DOM.word.innerHTML.trim() === current_word.id) {
+        DOM.word.style.color = "green";
         DOM.letters.style.display = "none";
+        DOM.img.style.display = "block";
         DOM.img.style.visibility = "visible"
+        DOM.description.style.visibility = "visible"
         DOM.img.addEventListener ("click", update);
+        var msg = new SpeechSynthesisUtterance(current_word.id);
+        window.speechSynthesis.speak(msg); 
     }  
 });
 
@@ -78,10 +86,16 @@ score.remove(5);
 
 // PICTURE
 DOM.bttns[19].addEventListener ("click", () => {
-score.remove(5);
-    DOM.img.style.visibility = "visible";
+    score.remove(5);
+    DOM.img.style.display = "block";
+    DOM.img.style.visibility = "visible"
+    DOM.letters.style.display = "none";
+    DOM.description.style.display = "none";
     setTimeout(()=>{
-        DOM.img.style.visibility = "hidden";
+        DOM.img.style.display = "none";
+        DOM.img.style.visibility = "hidden"
+        DOM.letters.style.display = "block";
+        DOM.description.style.display = "block";
     }, 400)
 });
 
@@ -93,7 +107,6 @@ DOM.bttns[20].addEventListener ("click", () => {
         DOM.bttns[i].style.visibility = "visible";
     }
 });
-
 
 // Get JSON words
 current_word = {id:"id"};
@@ -114,6 +127,10 @@ function update () {
 
     getNewWord();
 
+    
+    DOM.word.style.color = "black";
+    
+    
     // Reset letters
     for (let i=1; i<15; i++) {
         DOM.bttns[i].value = current_word.shuffled[i-1];
@@ -121,6 +138,7 @@ function update () {
 
     // Reset screen
     DOM.img.style.visibility = "hidden";
+    DOM.img.style.display = "none";
     DOM.img.setAttribute ("src", current_word.url);
     DOM.game.style.visibility = "visible";
     DOM.word.innerHTML = "";
@@ -130,19 +148,32 @@ function update () {
         DOM.bttns[i].style.visibility = "visible";
         DOM.bttns[i].style.backgroundColor = "rgb(200, 200, 200)";
     }
-  
+    
+    if (current_word.description === undefined) {
+        DOM.description.innerHTML = "";
+    } else {
+        DOM.description.innerHTML = current_word.description;
+    }
+    
+
+    
+    // 
+
 }
 
 function addLetter (){
     DOM.word.innerHTML += this.value;
     this.style.visibility = "hidden";
     if (DOM.word.innerHTML.trim() === current_word.id) {
-        //DOM.word.style.color = "green";
+        DOM.word.style.color = "green";
         //DOM.points.style.backgroundColor = "green";
         DOM.letters.style.display = "none";
         DOM.img.style.visibility = "visible"
+        DOM.img.style.display = "block"
         DOM.img.addEventListener ("click", update);
         score.add(5);
+    var msg = new SpeechSynthesisUtterance(current_word.id);
+    window.speechSynthesis.speak(msg); 
     }
 }
 
@@ -160,8 +191,5 @@ function shuffle(word, len) {
     }
     return arr.join("");
 }
-
-
-
 
 update ();
