@@ -3,9 +3,11 @@ textarea, input[type="text"], input[type="button"], input[type="submit"] {-webki
 body{	text-align: center;}
 
 .description {
-    max-width: 300px;
+    width: 330px;
 	text-align: center;
     margin: 10px auto;
+    padding: 10px;
+    display: block;
 }
 .points {
     display:block;
@@ -23,7 +25,7 @@ body{	text-align: center;}
 	height: 80px;
 	text-align: center;
 	padding-top: 20px;
-	font-size: 60px;
+	font-size: 50px;
     margin-top: 0px;
 }
 
@@ -49,25 +51,11 @@ body{	text-align: center;}
     border-radius: 0;
 }
 
-.bonus {
-	font-family: 'Consolas';
-    background-color: rgb(200, 200, 200);
-    border: none;
-    color: white;
-    padding: 4px 8px;
-    text-align: center;
-    text-decoration: none;
-    width: 60px;
-    height: 60px;
-    font-size: 35px;
-    margin: 4px 2px;
-    cursor: pointer;
-    border-radius: 50%;
-}
-
 .image {
+    max-width: 450px;
     width: 90%;
     margin: 0px auto;
+    display: none;
 }
 
 .definition {
@@ -98,8 +86,8 @@ body{	text-align: center;}
 }
 
 .btn {
-        margin: 4px 2px;
-    background-color: DodgerBlue;
+    margin: 4px 2px;
+    background-color: rgb(100, 100, 100);
     border: none;
     color: white;
     width: 60px;
